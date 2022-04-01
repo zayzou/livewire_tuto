@@ -2,11 +2,12 @@
     <div class="container px-5 py-24 mx-auto">
         <div class="lg:w-1/2 md:w-2/3 mx-auto">
             <div class="flex flex-wrap -m-2">
+
                 <form wire:submit.prevent='store' class="flex md:flex-nowrap flex-wrap  items-end w-full ">
                     <div class="relative   sm:mr-4 mr-2  w-full">
                         <label for="footer-field" class="leading-7 text-sm text-gray-600">Comment</label>
                         <input type="text" placeholder="What's on your mind 💬 " id="footer-field" name="footer-field"
-                            wire:model.lazy='newComment' wire:keydown.enter='store'
+                            wire:model='newComment' wire:keydown.enter='store'
                             class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:bg-transparent focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     </div>
                     <button type="submit"
@@ -14,6 +15,7 @@
                         Add
                     </button>
                 </form>
+
                 @forelse ($comments as $comment)
                     <div class="p-2 w-full mt-8 border border-gray-200 shadow-lg rounded relative">
                         <a class="title-font text-lg font-medium text-gray-900 mb-3 mr-2">{{ $comment->user->name }}</a>
