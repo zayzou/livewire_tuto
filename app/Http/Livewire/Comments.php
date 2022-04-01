@@ -39,7 +39,11 @@ class Comments extends Component
     public function delete($id)
     {
         Comment::destroy($id);
-        $this->comments= Comment::latest()->get();
+        $this->comments = Comment::latest()->get();
+        // $this->comments->filter( function ($value,$key) use ($id)
+        // {
+        //    return $key === 'id' and $value !== $id;
+        // });
     }
     public function render()
     {
