@@ -11,7 +11,7 @@
 </head>
 @livewireStyles()
 
-<body>
+<body class="bg-gray-900 text-gray-50">
 
     <livewire:comments  />
     {{-- <livewire:comments  :comment='$comments'/>  --}}

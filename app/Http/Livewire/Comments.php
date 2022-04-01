@@ -12,6 +12,7 @@ class Comments extends Component
     public $comments;
     public Comment $comment;
     public $newComment;
+    protected $rules = ['newComment'=>'required'];
 
     public function mount()
     {
@@ -21,9 +22,7 @@ class Comments extends Component
     }
     public function store()
     {
-        if (Str::of($this->newComment)->isEmpty()) {
-            return;
-        }
+        $this->validate();
 
         $createdComment = Comment::create(
             [
