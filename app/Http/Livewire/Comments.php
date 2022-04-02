@@ -12,7 +12,7 @@ class Comments extends Component
     public $comments;
     public Comment $comment;
     public $newComment;
-    protected $rules = ['newComment'=>'required|min:8|max:12'];
+    protected $rules = ['newComment'=>'required|min:8|max:40'];
 
 
     public function mount()
@@ -44,7 +44,8 @@ class Comments extends Component
     public function delete($id)
     {
         Comment::destroy($id);
-        $this->comments = $this->comments->where('id','!=',$id);
+        // $this->comments = $this->comments->where('id','!=',$id);
+        $this->comments = $this->comments->except($id);
     }
 
 
