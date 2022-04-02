@@ -36,8 +36,8 @@ class Comments extends Component
             ]
         );
         $this->comments->prepend($createdComment) ;
-
         $this->reset('newComment');
+        session()->flash('message','Comment created successfuly 🤩');
     }
 
 
@@ -46,6 +46,7 @@ class Comments extends Component
         Comment::destroy($id);
         // $this->comments = $this->comments->where('id','!=',$id);
         $this->comments = $this->comments->except($id);
+        session()->flash('message','Comment deleted successfuly 🫥');
     }
 
 
