@@ -30,8 +30,11 @@
                         <p class="my-5 text-sm">No comment yet, be the first to comment 😄</p>
                     </div>
                 @endforelse
-
+                <div class="mt-8 w-full">
+                    {{ $comments->links() }}
+                </div>
             </div>
         </div>
+
     </div>
 </section>
