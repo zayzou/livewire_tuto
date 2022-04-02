@@ -9,16 +9,13 @@
                 <input
                     class="block w-full text-sm  rounded-lg border  cursor-pointer text-gray-400 focus:outline-none focus:border-transparent bg-gray-700 border-gray-600 placeholder-gray-400 "
                     aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                    <img src="" alt="">
-                    <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                        <a href="#">
-                            <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-                        </a>
 
-                    </div>
-                <form wire:submit.prevent='store' class="flex md:flex-nowrap flex-wrap  items-end w-full ">
+                    <img class="rounded-t-lg w-48 mt-2" src="{{ url('storage/img/image-1.jpeg') }}" alt="placeholder" />
+                <form wire:submit.prevent='store' class="flex mt-8 md:flex-nowrap flex-wrap  items-end w-full ">
                     <div class="relative sm:mr-4 mr-2  w-full">
-                        <label for="footer-field" class="leading-7 text-sm text-gray-100">Comment</label>
+
+                        <label class="block mb-2 text-sm font-medium text-gray-400">Comment </label>
+
                         <input type="text" placeholder="What's on your mind 💬 " wire:model='newComment'
                             wire:keydown.enter='store'
                             class="w-full bg-gray-500 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:text-gray-100 focus:bg-transparent focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
