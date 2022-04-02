@@ -1,8 +1,8 @@
 <section class="text-gray-600 body-font relative">
+    <x-toast>Valid message 💚</x-toast>
     <div class="container px-5 py-24 mx-auto">
         <div class="lg:w-1/2 md:w-2/3 mx-auto">
             <div class="flex flex-wrap -m-2">
-
                 <form wire:submit.prevent='store' class="flex md:flex-nowrap flex-wrap  items-end w-full ">
                     <div class="relative   sm:mr-4 mr-2  w-full">
                         <label for="footer-field" class="leading-7 text-sm text-gray-100">Comment</label>
