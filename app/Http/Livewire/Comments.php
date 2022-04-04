@@ -23,15 +23,16 @@ class Comments extends Component
 
     public function storeImage()
     {
-        $this->image->store('image');
+        return $this->image->storePublicly('image');
     }
 
-    public function storeCommentInDatabase()
+
+    public function storeCommentInDatabase($image)
     {
         Comment::create(
             [
                 'body' => $this->newComment,
-
+                'image'=> $image,
                 'user_id' => rand(1,10)
             ]
         );
@@ -50,8 +51,7 @@ class Comments extends Component
     public function store()
     {
         $this->validate();
-        $this->storeCommentInDatabase();
-        $this->storeImage();
+        $this->storeCommentInDatabase($this->storeImage());
         $this->resetComponent();
 
         session()->flash('message','Comment created successfuly 🤩');

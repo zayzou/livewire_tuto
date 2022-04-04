@@ -14,9 +14,11 @@
                     @error('image')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
+
                     @if ($image)
                     <img class="rounded-t-lg w-48 mt-2" src="{{ $image->temporaryUrl() }}" alt="placeholder" />
                     @endif
+
 
                 <form wire:submit.prevent='store' class="flex mt-8 md:flex-nowrap flex-wrap  items-end w-full ">
                     <div class="relative sm:mr-4 mr-2  w-full">
@@ -39,6 +41,7 @@
 
                 @forelse ($comments as $comment)
                     <div class="p-2 w-full mt-8 border border-gray-200 shadow-lg rounded relative">
+                        <img class="h-40 rounded" src=" {{ 'storage/'.$comment->image }}" alt="comment image" srcset="">
                         <a
                             class="title-font text-lg font-medium text-gray-200 mb-3 mr-2">{{ $comment->user->name }}</a>
                         <span class="text-gray-400">{{ $comment->created_at->diffForHumans() }}</span>
