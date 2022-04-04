@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -23,7 +24,7 @@ class Comments extends Component
 
     public function storeImage()
     {
-        return $this->image->storePublicly('image');
+        return $this->image->store('image','public');
     }
 
 
@@ -60,6 +61,8 @@ class Comments extends Component
 
     public function delete($id)
     {
+
+        Storage::disk('public')->delete(Comment::find($id)->image);
         Comment::destroy($id);
         // $this->comments = $this->comments->where('id','!=',$id);
         // $this->comments = $this->comments->except($id);
