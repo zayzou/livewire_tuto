@@ -7,10 +7,17 @@
             <div class="flex flex-wrap -m-2">
                 <label class="block mb-2 text-sm font-medium text-gray-400" for="user_avatar">Upload file</label>
                 <input
-                    class="block w-full text-sm  rounded-lg border  cursor-pointer text-gray-400 focus:outline-none focus:border-transparent bg-gray-700 border-gray-600 placeholder-gray-400 "
-                    aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                wire:model='image'
+                class="block w-full text-sm  rounded-lg border  cursor-pointer text-gray-400 focus:outline-none focus:border-transparent bg-gray-700 border-gray-600 placeholder-gray-400 "
+                    id="user_avatar" type="file" />
 
-                    <img class="rounded-t-lg w-48 mt-2" src="{{ url('storage/img/image-1.jpeg') }}" alt="placeholder" />
+                    @error('image')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    @if ($image)
+                    <img class="rounded-t-lg w-48 mt-2" src="{{ $image->temporaryUrl() }}" alt="placeholder" />
+                    @endif
+
                 <form wire:submit.prevent='store' class="flex mt-8 md:flex-nowrap flex-wrap  items-end w-full ">
                     <div class="relative sm:mr-4 mr-2  w-full">
 
@@ -25,9 +32,11 @@
                         Add
                     </button>
                 </form>
+
                 @error('newComment')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
+
                 @forelse ($comments as $comment)
                     <div class="p-2 w-full mt-8 border border-gray-200 shadow-lg rounded relative">
                         <a
@@ -42,9 +51,11 @@
                         <p class="my-5 text-sm">No comment yet, be the first to comment 😄</p>
                     </div>
                 @endforelse
+
                 <div class="mt-8 w-full">
                     {{ $comments->links() }}
                 </div>
+
             </div>
         </div>
 

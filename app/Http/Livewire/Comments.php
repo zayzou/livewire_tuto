@@ -5,18 +5,43 @@ namespace App\Http\Livewire;
 use App\Models\Comment;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class Comments extends Component
 {
 
 
     use WithPagination;
-    public Comment $comment;
+    use WithFileUploads;
+
     public $newComment;
-    protected $rules = ['newComment'=>'required|min:8|max:40'];
+    public $image;
+    protected $rules = ['newComment'=>'required|min:8|max:40','image'=>'image|max:1024'];
 
 
 
+
+    public function storeImage()
+    {
+        $this->image->store('image');
+    }
+
+    public function storeCommentInDatabase()
+    {
+        Comment::create(
+            [
+                'body' => $this->newComment,
+
+                'user_id' => rand(1,10)
+            ]
+        );
+    }
+
+    public function resetComponent()
+    {
+        $this->reset('newComment','image');
+
+    }
     public function updated($property)
     {
         $this->validateOnly($property);
@@ -25,15 +50,10 @@ class Comments extends Component
     public function store()
     {
         $this->validate();
+        $this->storeCommentInDatabase();
+        $this->storeImage();
+        $this->resetComponent();
 
-        $createdComment = Comment::create(
-            [
-                'body' => $this->newComment,
-                'user_id' => rand(1,10)
-            ]
-        );
-        // $this->comments->prepend($createdComment) ;
-        $this->reset('newComment');
         session()->flash('message','Comment created successfuly 🤩');
     }
 
