@@ -4,7 +4,8 @@
             <div class="flex flex-wrap -m-2">
                <h1>Tickets</h1>
                @forelse ($tickets as $ticket)
-               <div class="mt-2 border border-gray-200 shadow-lg rounded">
+               <div class="mt-2 border border-gray-200 shadow-lg rounded"
+               wire:click="$emit('ticketSelected',{{$ticket->id }})">
                   <h1>{{ $ticket->question }}</h1>
                </div>
            @empty

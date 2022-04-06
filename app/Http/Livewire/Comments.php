@@ -17,9 +17,9 @@ class Comments extends Component
 
     public $newComment;
     public $image;
+    public $ticket_id;
     protected $rules = ['newComment'=>'required|min:8|max:40','image'=>'image|max:1024'];
-
-
+    protected $listeners = ['ticketSelected'];
 
 
     public function storeImage()
@@ -34,6 +34,7 @@ class Comments extends Component
             [
                 'body' => $this->newComment,
                 'image'=> $image,
+                'support_ticket_id'=>$this->ticket_id,
                 'user_id' => rand(1,10)
             ]
         );
@@ -69,6 +70,12 @@ class Comments extends Component
         session()->flash('message','Comment deleted successfuly 🫥');
     }
 
+
+
+    public function ticketSelected($id)
+    {
+        $this->ticket_id=$id;
+    }
 
     public function render()
     {
