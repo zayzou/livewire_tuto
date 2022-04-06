@@ -18,13 +18,13 @@ class Comments extends Component
     public $newComment;
     public $image;
     public $ticket_id;
-    protected $rules = ['newComment'=>'required|min:8|max:40','image'=>'image|max:1024'];
+    protected $rules = ['newComment' => 'required|min:8|max:40', 'image' => 'image|max:1024'];
     protected $listeners = ['ticketSelected'];
 
 
     public function storeImage()
     {
-        return $this->image->store('image','public');
+        return $this->image->store('image', 'public');
     }
 
 
@@ -33,17 +33,16 @@ class Comments extends Component
         Comment::create(
             [
                 'body' => $this->newComment,
-                'image'=> $image,
-                'support_ticket_id'=>$this->ticket_id,
-                'user_id' => rand(1,10)
+                'image' => $image,
+                'support_ticket_id' => $this->ticket_id,
+                'user_id' => rand(1, 10)
             ]
         );
     }
 
     public function resetComponent()
     {
-        $this->reset('newComment','image');
-
+        $this->reset('newComment', 'image');
     }
     public function updated($property)
     {
@@ -56,7 +55,7 @@ class Comments extends Component
         $this->storeCommentInDatabase($this->storeImage());
         $this->resetComponent();
 
-        session()->flash('message','Comment created successfuly 🤩');
+        session()->flash('message', 'Comment created successfuly 🤩');
     }
 
 
@@ -67,18 +66,24 @@ class Comments extends Component
         Comment::destroy($id);
         // $this->comments = $this->comments->where('id','!=',$id);
         // $this->comments = $this->comments->except($id);
-        session()->flash('message','Comment deleted successfuly 🫥');
+        session()->flash('message', 'Comment deleted successfuly 🫥');
     }
 
 
 
     public function ticketSelected($id)
     {
-        $this->ticket_id=$id;
+        $this->ticket_id = $id;
     }
 
     public function render()
     {
-        return view('livewire.comments',['comments'=> Comment::latest()->paginate(5)]);
+        return view(
+            'livewire.comments',
+            ['comments' => Comment::
+            where('support_ticket_id',$this->ticket_id)
+            ->latest()
+            ->paginate(5)]
+        );
     }
 }

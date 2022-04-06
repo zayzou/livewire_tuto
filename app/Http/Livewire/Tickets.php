@@ -13,7 +13,6 @@ class Tickets extends Component
     {
 
         $tickets = SupportTicket::all();
-
         return view('livewire.tickets',['tickets'=>$tickets]);
     }
 }
