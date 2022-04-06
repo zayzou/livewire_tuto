@@ -3,7 +3,7 @@
         <x-toast>{{ session('message') }}</x-toast>
     @endif
     <div class="container px-5 py-24 mx-auto">
-        <div class="lg:w-1/2 md:w-2/3 mx-auto">
+        <div class="mx-auto">
             <div class="flex flex-wrap -m-2">
                 <label class="block mb-2 text-sm font-medium text-gray-400" for="user_avatar">Upload file</label>
                 <input

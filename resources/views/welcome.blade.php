@@ -11,9 +11,16 @@
 </head>
 @livewireStyles()
 
-<body class="bg-gray-900 text-gray-50">
+<body class="bg-gray-900 text-gray-50 flex justify-center">
+   <div class="w-10/12 my-10 flex">
+    <div class="w-5/12">
+        <livewire:tickets />
+    </div>
+    <div class="w-7/12">
+        <livewire:comments/>
+    </div>
 
-    <livewire:comments  />
+   </div>
     {{-- <livewire:comments  :comment='$comments'/>  --}}
     @livewireScripts()
 </body>
