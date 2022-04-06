@@ -17,7 +17,8 @@ class SupportTicketFactory extends Factory
     public function definition()
     {
         return [
-            //
+          'question' =>$this->faker->paragraph(),
+          'ticket_id'=> $this->faker->numberBetween(1,10)
         ];
     }
 }
