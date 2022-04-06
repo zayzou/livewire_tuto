@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('support_tickets', function (Blueprint $table) {
             $table->id();
+            $table->string('question');
+            $table->foreignId('ticket_id');
             $table->timestamps();
         });
     }
